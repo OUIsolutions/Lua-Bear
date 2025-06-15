@@ -10,14 +10,34 @@ LuaBear is a powerful and easy-to-use HTTP client library for Lua, designed to m
 - Easy integration with Lua projects
 
 ## Installation
-
-1. Build or download the `luaBear.so` shared library and `luaBear.lua` module.
-2. Place them in your Lua `package.path` and `package.cpath`.
-3. Require the module in your Lua script:
+To install the lib, just download the lib [Lib Download](https://github.com/OUIsolutions/Lua-Bear/releases/download/0.7.0/Lua-Bear.zip)
+in the root of your project, and run with:
 
 ```lua
-local luabear = require("luaBear.luaBear")
+local luabear  = require("luaBear.luaBear")
+
 ```
+
+
+
+#### Installation from Command
+if you prefer to install with a command, just type:
+```shell
+ curl -L -o Lua-Bear.zip https://github.com/OUIsolutions/Lua-Bear/releases/download/0.7.0/Lua-Bear.zip && unzip Lua-Bear.zip && rm Lua-Bear.zip
+```
+
+
+#### Build from scratch
+
+for buiding from scratch you need to have darwin installed on your machine, for install darwin:
+```bash
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.out -o darwin.out && chmod +x darwin.out &&  sudo  mv darwin.out /usr/bin/darwin
+```
+then you can build the project with in the root dir of the project:
+```bash
+darwin run_blueprint build/  --mode folder build_release
+```
+
 
 ## Basic Usage
 
