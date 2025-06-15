@@ -4,6 +4,7 @@ dependencies
 
 luaBear
 src/imports 
+test.png
 release
 .vscode
 # Object files
