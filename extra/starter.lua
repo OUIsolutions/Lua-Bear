@@ -2,12 +2,12 @@
 
 ---@class BearProps
 ---@field url string
----@field method string
----@field headers table<string, string>
----@field body string | table
+---@field method string | nil
+---@field headers table<string, string> | nil
+---@field body string | table | nil
 
 
----@class BearModule
+---@class LuaBearModule
 ---@field fetch fun(props:BearProps): BearResponse
 ---@field nil_code string
 
@@ -35,7 +35,7 @@ end
 
 local load_lua = package.loadlib(lib_path, "load_lua_bear")
 
----@type DtwModule
+---@type LuaBearModule
 local lib = load_lua()
 
 return lib
