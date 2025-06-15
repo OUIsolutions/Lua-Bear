@@ -3,7 +3,8 @@
 #include "imports/imports.fdefine.h"
 
 void start_bear_props(LuaCEmbed *l){
-
+    
+    LuaCEmbed_add_callback(l, "fetch", private_lua_bear_fetch);
 }
 
 int load_lua_bear(lua_State *state){

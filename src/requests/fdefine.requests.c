@@ -3,7 +3,10 @@
 #include "../imports/imports.fdeclare.h"
 //silver_chain_scope_end
 
-LuaCEmbedResponse *private_fetch(LuaCEmbed *args){
+
+
+
+LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
     LuaCEmbedTable * entrie_table = LuaCEmbed_get_arg_table(args, 0);
     char *url = LuaCembedTable_get_string_prop(entrie_table, "url");
      if(LuaCEmbed_has_errors(args)){
@@ -47,7 +50,9 @@ LuaCEmbedResponse *private_fetch(LuaCEmbed *args){
            BearHttpsRequest_send_any(request, body, body_size);       
         }
         else if(body_type == LUA_CEMBED_TABLE){
-            
+            char *nil_code = LuaCembedTable_get_string_prop(entrie_table, "nil_code");
+            cJSON * body_json = private_lua_bear_json_dump_to_cJSON_object(entrie_table, "nil");
+
         }
         else{
             BearHttpsRequest_free(request);
