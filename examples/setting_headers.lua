@@ -1,7 +1,7 @@
 ---@type LuaBearModule
 local luabear  = require("luaBear.luaBear")
 local response = luabear.fetch({
-    url="http://localhost:3001/",
+    url="http://localhost:3000/",
     method="POST",
     headers={
         username="your username",

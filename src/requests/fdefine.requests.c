@@ -24,8 +24,8 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
     }
    
         
-    if(LuaCEmbedTable_get_type_prop(entrie_table, "headders") != LUA_CEMBED_NIL){
-       LuaCEmbedTable * headders_table = LuaCEmbedTable_get_sub_table_by_key(entrie_table, "headders");
+    if(LuaCEmbedTable_get_type_prop(entrie_table, "headers") != LUA_CEMBED_NIL){
+       LuaCEmbedTable * headders_table = LuaCEmbedTable_get_sub_table_by_key(entrie_table, "headers");
        if(LuaCEmbed_has_errors(args)){
          BearHttpsRequest_free(request);
           return LuaCEmbed_send_error(LuaCEmbed_get_error_message(args));
