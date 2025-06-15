@@ -7,7 +7,7 @@ function main()
 
     darwin.silverchain.generate({
         src = "src",
-        project_shortcut="luaDoTheWorld",
+        project_shortcut="luaBear",
         tags = { "dependencie", "consts", "macros", "globals", "fdeclare", "fdefine" },
         implement_main = false
     })
@@ -23,12 +23,14 @@ function main()
         MAX_CONNTENT,
         MAX_RECURSION
     )
-    darwin.dtw.write_file("release/luaDoTheWorld_no_dep.c", no_dep_amalgamation)
+    darwin.dtw.write_file("release/luaBear_no_dep.c", no_dep_amalgamation)
 
-    darwin.dtw.copy_any_overwriting("extra/starter.lua","release/luaDoTheWorld/luaDoTheWorld.lua")
-    os.execute("gcc src/one.c -Wall -shared  -fpic -o release/luaDoTheWorld/luaDoTheWorld.so")
+
+    if true then return end 
+    darwin.dtw.copy_any_overwriting("extra/starter.lua","release/luaBear/luaBear.lua")
+    os.execute("gcc src/one.c -Wall -shared  -fpic -o release/luaBear/luaBear.so")
 
     --zip the folder 
-    os.execute("cd release && zip -r luaDoTheWorld.zip luaDoTheWorld")
-    darwin.dtw.remove_any("release/luaDoTheWorld")
+    os.execute("cd release && zip -r luaBear.zip luaBear")
+    darwin.dtw.remove_any("release/luaBear")
 end

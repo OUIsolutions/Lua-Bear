@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
-
+dependencies
+src/imports 
 # Object files
 *.o
 *.ko
