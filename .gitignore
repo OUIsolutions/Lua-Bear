@@ -2,6 +2,7 @@
 *.d
 dependencies
 src/imports 
+release
 # Object files
 *.o
 *.ko
