@@ -131,7 +131,7 @@ cJSON  * private_lua_bear_json_dump_to_cJSON_object(LuaCEmbedTable *table, const
 
 cJSON  * private_lua_bear_json_dump_table_to_cJSON(LuaCEmbedTable *table, const char *nil_code){
 
-    if(lua_json_fluid_table_is_object(table)){
+    if(private_lua_bear_table_is_object(table)){
 
         return private_lua_bear_json_dump_to_cJSON_object(table, nil_code);
     }

@@ -30,9 +30,9 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
          BearHttpsRequest_free(request);
           return LuaCEmbed_send_error(LuaCEmbed_get_error_message(args));
        }
-       long headders_size = LuaCEmbedTable_get_size(headders_table);
+       long headders_size = LuaCEmbedTable_get_full_size(headders_table);
        for(long i = 0; i < headders_size; i++){
-           char * key = LuaCEmbedTable_get_key(headders_table, i);
+           char * key = LuaCembedTable_get_key_by_index(headders_table, i);
            char * value = LuaCembedTable_get_string_prop(headders_table, key);
            if(LuaCEmbed_has_errors(args)){
              BearHttpsRequest_free(request);
@@ -52,13 +52,12 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
         else if(body_type == LUA_CEMBED_TABLE){
             char *nil_code = LuaCembedTable_get_string_prop(entrie_table, "nil_code");
             cJSON * body_json = private_lua_bear_json_dump_to_cJSON_object(entrie_table, "nil");
-
+            BearHttpsRequest_send_cJSON_with_ownership_control(request, body_json,BEARSSL_HTTPS_GET_OWNERSHIP);
         }
         else{
             BearHttpsRequest_free(request);
             return LuaCEmbed_send_error("body must me a table or a string" );
         }
-
     }
 
 
