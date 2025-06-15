@@ -74,13 +74,13 @@ LuaCEmbedResponse * private_lua_bear_create_response_obj(LuaCEmbed *args,BearHtt
     LuaCEmbedTable_set_long_prop(self,"bear_response_ojb",(bear_ptr_cast)response);
     LuaCEmbedTable_set_long_prop(self,"status_code", response->status_code);
 
-    LuaCEmbedTable *headders = LuaCembed_new_anonymous_table(args);
-    LuaCEmbedTable_set_sub_table_prop(self, "headers", headders);
+    LuaCEmbedTable *headers = LuaCembed_new_anonymous_table(args);
+    LuaCEmbedTable_set_sub_table_prop(self, "headers", headers);
     int headders_size = BearHttpsResponse_get_headers_size(response);
     for (int i = 0; i < headders_size; i++) {
         char *key = BearHttpsResponse_get_header_key_by_index(response, i);
         char *value = BearHttpsResponse_get_header_value_by_index(response, i);
-        LuaCEmbedTable_set_string_prop(self, key, value);
+        LuaCEmbedTable_set_string_prop(headers, key, value);
     }
     return LuaCEmbed_send_table(self);
 
