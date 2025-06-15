@@ -61,15 +61,19 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
     }
 
 
- 
-
 
     if(LuaCEmbed_has_errors(args)){
         return LuaCEmbed_send_error(LuaCEmbed_get_error_message(args));
     }
-
+    BearHttpsResponse *response = BearHttpsRequest_fetch(request);
+    BearHttpsRequest_free(request);
+    if(BearHttpsResponse_error(response)){
+            char *error_msg  =  BearHttpsResponse_get_error_msg(response);
+            LuaCEmbedResponse *error_response = LuaCEmbed_send_error(error_msg);
+            BearHttpsResponse_free(response);
+            return error_response;
+    }
+   
     return NULL;
-
-
 
 }
