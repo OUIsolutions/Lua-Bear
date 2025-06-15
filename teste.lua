@@ -1,11 +1,4 @@
+bear = package.loadlib("./bear.so","load_lua_bear")()
 
-
-response = bear.fetch({
-    url="aaaa",
-    headders={
-       name= "aaa"
-    },
-    method="GET",
-    body="aaa"
-})
-
+local response = bear.fetch({url="https://example.com/"})
+print(response.read_body())
