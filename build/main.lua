@@ -8,7 +8,7 @@ function main()
     darwin.silverchain.generate({
         src = "src",
         project_shortcut="luaBear",
-        tags = { "dependencie", "consts", "macros", "globals", "fdeclare", "fdefine" },
+        tags = { "dependencie", "consts", "macros", "globals","types", "fdeclare", "fdefine" },
         implement_main = false
     })
 
