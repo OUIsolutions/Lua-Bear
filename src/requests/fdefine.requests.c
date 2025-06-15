@@ -77,9 +77,7 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
         char *nil_code = LuaCEmbed_get_string_lib_prop(args, "nil_code");
         cJSON * body_json = private_lua_bear_json_dump_to_cJSON_object(entrie_table, nil_code);
         BearHttpsRequest_send_cJSON_with_ownership_control(request, body_json,BEARSSL_HTTPS_GET_OWNERSHIP);
-        if(!content_type_setted){
-            BearHttpsRequest_add_header(request, "Content-Type", "application/json");
-        }
+       
     }
         
         
