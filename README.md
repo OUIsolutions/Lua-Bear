@@ -10,7 +10,7 @@ LuaBear is a powerful and easy-to-use HTTP client library for Lua, designed to m
 - Easy integration with Lua projects
 
 ## Installation
-To install the lib, just download the lib [Lib Download](https://github.com/OUIsolutions/Lua-Bear/releases/download/0.7.0/Lua-Bear.zip)
+To install the lib, just download the lib [Lib Download](https://github.com/OUIsolutions/Lua-Bear/releases/download/0.1.0/Lua-Bear.zip)
 in the root of your project, and run with:
 
 ```lua
@@ -23,7 +23,7 @@ local luabear  = require("luaBear.luaBear")
 #### Installation from Command
 if you prefer to install with a command, just type:
 ```shell
- curl -L -o Lua-Bear.zip https://github.com/OUIsolutions/Lua-Bear/releases/download/0.7.0/Lua-Bear.zip && unzip Lua-Bear.zip && rm Lua-Bear.zip
+ curl -L -o Lua-Bear.zip https://github.com/OUIsolutions/Lua-Bear/releases/download/0.1.0/Lua-Bear.zip && unzip Lua-Bear.zip && rm Lua-Bear.zip
 ```
 
 
