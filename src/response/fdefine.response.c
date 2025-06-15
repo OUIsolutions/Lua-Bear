@@ -51,7 +51,11 @@ LuaCEmbedResponse * private_lua_bear_read_body_chunck(LuaCEmbedTable *self,LuaCE
 }
 
 
-
+LuaCEmbedResponse * private_lua_bear_delete(LuaCEmbedTable *self,LuaCEmbed *args)  {
+    BearHttpsResponse *response = (BearHttpsResponse *)(bear_ptr_cast)LuaCembedTable_get_long_prop(self, "bear_response_ojb");
+    BearHttpsResponse_free(response);
+    return NULL;
+}
 
 LuaCEmbedResponse * private_lua_bear_create_response_obj(LuaCEmbed *args,BearHttpsResponse *response) {
   
@@ -65,8 +69,11 @@ LuaCEmbedResponse * private_lua_bear_create_response_obj(LuaCEmbed *args,BearHtt
     LuaCEmbedTable_set_method(self, "read_body", private_lua_bear_read_body);
     LuaCEmbedTable_set_method(self, "read_body_json", private_lua_bear_read_body_json);
     LuaCEmbedTable_set_method(self, "read_body_chunk", private_lua_bear_read_body_chunck);
+    LuaCEmbedTable_set_method(self, "__gc", private_lua_bear_delete);
+
     LuaCEmbedTable_set_long_prop(self,"bear_response_ojb",(bear_ptr_cast)response);
     LuaCEmbedTable_set_long_prop(self,"status_code", response->status_code);
+
     LuaCEmbedTable *headders = LuaCembed_new_anonymous_table(args);
     LuaCEmbedTable_set_sub_table_prop(self, "headers", headders);
     int headders_size = BearHttpsResponse_get_headers_size(response);

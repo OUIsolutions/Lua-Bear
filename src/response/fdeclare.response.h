@@ -10,4 +10,7 @@ LuaCEmbedResponse * private_lua_bear_read_body_json(LuaCEmbedTable *self,LuaCEmb
 
 LuaCEmbedResponse * private_lua_bear_read_body_chunck(LuaCEmbedTable *self,LuaCEmbed *args);
 
+LuaCEmbedResponse * private_lua_bear_delete(LuaCEmbedTable *self,LuaCEmbed *args);
+
+
 LuaCEmbedResponse * private_lua_bear_create_response_obj(LuaCEmbed *args,BearHttpsResponse *response);
