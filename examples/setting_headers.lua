@@ -8,5 +8,4 @@ local response = luabear.fetch({
         password ="your password"
     }
 })
-local body = response.read_body()
-print(body)
+print(response.read_body())
