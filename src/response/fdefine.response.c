@@ -39,12 +39,13 @@ LuaCEmbedResponse * private_lua_bear_read_body_chunck(LuaCEmbedTable *self,LuaCE
          char *error_msg = BearHttpsResponse_get_error_msg(response);
          return LuaCEmbed_send_error(error_msg);
     }
+    
     if(total_readded == 0){
         free(chunk);
         return NULL; // No more data to read
     }
-
-    LuaCEmbedResponse *lua_response = LuaCEmbed_send_raw_string(chunk, chunk_size);
+    
+    LuaCEmbedResponse *lua_response = LuaCEmbed_send_raw_string(chunk, total_readded);
     free(chunk);
     return lua_response;
 }
