@@ -63,7 +63,7 @@ LuaCEmbedResponse * private_lua_bear_create_response_obj(LuaCEmbed *args,BearHtt
     LuaCEmbedTable_set_long_prop(self,"bear_response_ojb",(bear_ptr_cast)response);
     LuaCEmbedTable_set_long_prop(self,"status_code", response->status_code);
     LuaCEmbedTable *headders = LuaCembed_new_anonymous_table(args);
-    LuaCEmbedTable_set_sub_table_prop(self, "headders", headders);
+    LuaCEmbedTable_set_sub_table_prop(self, "headers", headders);
     int headders_size = BearHttpsResponse_get_headers_size(response);
     for (int i = 0; i < headders_size; i++) {
         char *key = BearHttpsResponse_get_header_key_by_index(response, i);

@@ -26,11 +26,9 @@ function main()
     darwin.dtw.write_file("release/luaBear_no_dep.c", no_dep_amalgamation)
 
 
-    if true then return end 
     darwin.dtw.copy_any_overwriting("extra/starter.lua","release/luaBear/luaBear.lua")
-    os.execute("gcc src/one.c -Wall -shared  -fpic -o release/luaBear/luaBear.so")
+    os.execute("gcc src/one.c  -shared  -fpic -o release/luaBear/luaBear.so")
 
     --zip the folder 
     os.execute("cd release && zip -r luaBear.zip luaBear")
-    darwin.dtw.remove_any("release/luaBear")
 end

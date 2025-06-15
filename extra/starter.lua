@@ -1,0 +1,41 @@
+
+
+---@class BearProps
+---@field url string
+---@field method string
+---@field headers table<string, string>
+---@field body string | table
+
+
+---@class BearModule
+---@field fetch fun(props:BearProps): BearResponse
+---@field nil_code string
+
+
+---@class BearResponse
+---@field status_code integer
+---@field headers table<string, string>
+---@field read_body fun(): string
+---@field read_body_json fun(): table
+---@field read_body_chunk fun(size:integer): string
+
+
+
+
+local info = debug.getinfo(1, "S")
+local path = info.source:match("@(.*/)") or ""
+
+local lib_path = ''
+
+if os.getenv("HOME") then
+    lib_path = path.."luaBear.so"
+else
+    lib_path = path.."luaBear.dll"
+end 
+
+local load_lua = package.loadlib(lib_path, "load_lua_bear")
+
+---@type DtwModule
+local lib = load_lua()
+
+return lib
