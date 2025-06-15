@@ -4,7 +4,7 @@
 //silver_chain_scope_end
 
 LuaCEmbedResponse * private_lua_bear_read_body(LuaCEmbedTable *self,LuaCEmbed *args) {
-    BearHttpsResponse *response = (BearHttpsResponse *)(bear_ptr_cast)LuaCEmbedTable_get_long_prop(self, "bear_response_ojb");
+    BearHttpsResponse *response = (BearHttpsResponse *)(bear_ptr_cast)LuaCembedTable_get_long_prop(self, "bear_response_ojb");
     unsigned char *body = BearHttpsResponse_read_body(response);
     if(BearHttpsResponse_error(response)){
          char *error_msg = BearHttpsResponse_get_error_msg(response);
@@ -14,8 +14,8 @@ LuaCEmbedResponse * private_lua_bear_read_body(LuaCEmbedTable *self,LuaCEmbed *a
 }
 
 LuaCEmbedResponse * private_lua_bear_read_body_json(LuaCEmbedTable *self,LuaCEmbed *args) {
-    BearHttpsResponse *response = (BearHttpsResponse *)(bear_ptr_cast)LuaCEmbedTable_get_long_prop(self, "bear_response_ojb");
-    char *body = BearHttpsResponse_read_body_str(response);
+    BearHttpsResponse *response = (BearHttpsResponse *)(bear_ptr_cast)LuaCembedTable_get_long_prop(self, "bear_response_ojb");
+   const  char *body = BearHttpsResponse_read_body_str(response);
     if(BearHttpsResponse_error(response)){
          char *error_msg = BearHttpsResponse_get_error_msg(response);
          return LuaCEmbed_send_error(error_msg);
@@ -26,7 +26,7 @@ LuaCEmbedResponse * private_lua_bear_read_body_json(LuaCEmbedTable *self,LuaCEmb
 
 
 LuaCEmbedResponse * private_lua_bear_read_body_chunck(LuaCEmbedTable *self,LuaCEmbed *args) {
-    BearHttpsResponse *response = (BearHttpsResponse *)(bear_ptr_cast)LuaCEmbedTable_get_long_prop(self, "bear_response_ojb");
+    BearHttpsResponse *response = (BearHttpsResponse *)(bear_ptr_cast)LuaCembedTable_get_long_prop(self, "bear_response_ojb");
     
     long chunk_size = LuaCEmbed_get_long_arg(args, 0);
     if(LuaCEmbed_has_errors(args)){
@@ -66,10 +66,10 @@ LuaCEmbedResponse * private_lua_bear_create_response_obj(LuaCEmbed *args,BearHtt
     LuaCEmbedTable_set_sub_table_prop(self, "headders", headders);
     int headders_size = BearHttpsResponse_get_headers_size(response);
     for (int i = 0; i < headders_size; i++) {
-        char *key = BearHttpsResponse_get_header_key(headders, i);
-        char *value = BearHttpsResponse_get_header_value(headders, i);
+        char *key = BearHttpsResponse_get_header_key_by_index(response, i);
+        char *value = BearHttpsResponse_get_header_value_by_index(response, i);
         LuaCEmbedTable_set_string_prop(self, key, value);
     }
-
+    return LuaCEmbed_send_table(self);
 
 }

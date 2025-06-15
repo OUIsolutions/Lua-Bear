@@ -68,6 +68,6 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
     BearHttpsResponse *response = BearHttpsRequest_fetch(request);
     BearHttpsRequest_free(request);
 
-    return private_lua_bear_create_response_obj(response);
+    return private_lua_bear_create_response_obj(args,response);
 
 }

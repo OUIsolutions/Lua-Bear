@@ -22,11 +22,11 @@ LuaCEmbedTable * private_lua_bear_parse_array(LuaCEmbed *args, cJSON *json_array
             LuaCEmbedTable_append_string(created, nil_code);
         }
         else if(cJSON_IsObject(current)){
-            LuaCEmbedTable *internal_created = private_lua_bear_parse_object(args,current);
+            LuaCEmbedTable *internal_created = private_lua_bear_parse_object(args,current,nil_code);
             LuaCEmbedTable_append_table(created,internal_created);
         }
         else if(cJSON_IsArray(current)){
-            LuaCEmbedTable *internal_created = private_lua_bear_parse_array(args,current);
+            LuaCEmbedTable *internal_created = private_lua_bear_parse_array(args,current,nil_code);
             LuaCEmbedTable_append_table(created,internal_created);
         }
     }
@@ -53,11 +53,11 @@ LuaCEmbedTable * private_lua_bear_parse_object(LuaCEmbed *args, cJSON *json_obje
             LuaCEmbedTable_set_string_prop(created, key, nil_code);
         }
         else if(cJSON_IsObject(current)){
-            LuaCEmbedTable *internal_created = private_lua_bear_parse_object(args,current);
+            LuaCEmbedTable *internal_created = private_lua_bear_parse_object(args,current,nil_code);
             LuaCEmbedTable_set_sub_table_prop(created,key,internal_created);
         }
         else if(cJSON_IsArray(current)){
-            LuaCEmbedTable *internal_created = private_lua_bear_parse_array(args,current);
+            LuaCEmbedTable *internal_created = private_lua_bear_parse_array(args,current,nil_code);
             LuaCEmbedTable_set_sub_table_prop(created,key,internal_created);
         }
     }

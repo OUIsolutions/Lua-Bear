@@ -33,7 +33,7 @@ cJSON  * private_lua_bear_json_dump_to_cJSON_array(LuaCEmbedTable *table,const c
 
         if(type == LUA_CEMBED_TABLE){
             LuaCEmbedTable *internal = LuaCEmbedTable_get_sub_table_by_index(table,i);
-            cJSON *value = private_lua_bear_json_dump_table_to_cJSON(internal);
+            cJSON *value = private_lua_bear_json_dump_table_to_cJSON(internal, nil_code);
             cJSON_AddItemToArray(created_array, value);
         }
 
@@ -78,7 +78,7 @@ cJSON  * private_lua_bear_json_dump_to_cJSON_object(LuaCEmbedTable *table, const
 
             if(type == LUA_CEMBED_TABLE){
                 LuaCEmbedTable *internal = LuaCEmbedTable_get_sub_table_by_index(table,i);
-                cJSON *value = private_lua_bear_json_dump_table_to_cJSON(internal);
+                cJSON *value = private_lua_bear_json_dump_table_to_cJSON(internal, nil_code);
                 cJSON_AddItemToObject(created_object,key,value);
             }
         }
@@ -118,7 +118,7 @@ cJSON  * private_lua_bear_json_dump_to_cJSON_object(LuaCEmbedTable *table, const
         }
         if(type == LUA_CEMBED_TABLE){
             LuaCEmbedTable *internal = LuaCEmbedTable_get_sub_table_by_index(table, idx);
-            cJSON *value = private_lua_bear_json_dump_table_to_cJSON(internal);
+            cJSON *value = private_lua_bear_json_dump_table_to_cJSON(internal, nil_code);
             cJSON_AddItemToObject(created_object, key, value);
         }
     }

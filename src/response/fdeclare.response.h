@@ -3,4 +3,11 @@
 #include "../imports/imports.types.h"
 //silver_chain_scope_end
 
-LuaCEmbedResponse * private_lua_bear_create_response_obj(BearHttpsResponse *response);
+LuaCEmbedResponse * private_lua_bear_read_body(LuaCEmbedTable *self,LuaCEmbed *args);
+
+
+LuaCEmbedResponse * private_lua_bear_read_body_json(LuaCEmbedTable *self,LuaCEmbed *args);
+
+LuaCEmbedResponse * private_lua_bear_read_body_chunck(LuaCEmbedTable *self,LuaCEmbed *args);
+
+LuaCEmbedResponse * private_lua_bear_create_response_obj(LuaCEmbed *args,BearHttpsResponse *response);
