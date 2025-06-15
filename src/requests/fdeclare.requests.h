@@ -3,4 +3,4 @@
 #include "../imports/imports.macros.h"
 //silver_chain_scope_end
 
-
+LuaCEmbedResponse *private_fetch(LuaCEmbed *args);
