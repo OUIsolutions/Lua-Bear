@@ -3,6 +3,7 @@
 dependencies
 src/imports 
 release
+.vscode
 # Object files
 *.o
 *.ko
