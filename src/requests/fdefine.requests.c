@@ -4,7 +4,24 @@
 //silver_chain_scope_end
 
 
+LuaCEmbedResponse *private_lua_bear_file_stream(LuaCEmbed *args){
+    LuaCEmbedTable *self = LuaCembed_new_anonymous_table(args);
+    LuaCEmbedTable_set_bool_prop(self, "lua_bear_is_file_stream", true);
+    char *filename = LuaCEmbed_get_str_arg(args,0);
+    LuaCEmbedTable_set_string_prop(self, "filename", filename);
 
+    if(LuaCEmbed_has_errors(args)){
+        return LuaCEmbed_send_error(LuaCEmbed_get_error_message(args));
+    }
+    if(LuaCEmbed_get_arg_type(args,1)!= LUA_CEMBED_NIL){
+        char *content_type = LuaCEmbed_get_str_arg(args, 1);
+        if(LuaCEmbed_has_errors(args)){
+            return LuaCEmbed_send_error(LuaCEmbed_get_error_message(args));
+        }
+        LuaCEmbedTable_set_string_prop(self, "content_type", content_type);
+    }
+    return LuaCEmbed_send_table(self);
+}
 
 LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
     LuaCEmbedTable * entrie_table = LuaCEmbed_get_arg_table(args, 0);
@@ -74,10 +91,31 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
       
     }
     if(body_type == LUA_CEMBED_TABLE){
-        char *nil_code = LuaCEmbed_get_string_lib_prop(args, "nil_code");
-        cJSON * body_json = private_lua_bear_json_dump_to_cJSON_object(entrie_table, nil_code);
-        BearHttpsRequest_send_cJSON_with_ownership_control(request, body_json,BEARSSL_HTTPS_GET_OWNERSHIP);
-       
+
+        LuaCEmbedTable * body_table = LuaCEmbedTable_get_sub_table_by_key(entrie_table, "body");
+        //means its a file stream
+
+        bool is_file_stream = LuaCEmbedTable_get_type_prop(body_table, "lua_bear_is_file_stream") == LUA_CEMBED_BOOL;
+        if(is_file_stream){
+            char *filename = LuaCembedTable_get_string_prop(body_table, "filename");
+            bool content_type_provided = LuaCEmbedTable_get_type_prop(body_table, "content_type") == LUA_CEMBED_STRING;
+            if(content_type_provided){
+                char *content_type = LuaCembedTable_get_string_prop(body_table, "content_type");
+                BearHttpsRequest_send_file(request, filename, content_type);
+            }
+            if(!content_type_provided){
+                BearHttpsRequest_send_file_auto_detect_content_type(request, filename);
+            }
+        }
+
+
+        if(!is_file_stream){
+            char *nil_code = LuaCEmbed_get_string_lib_prop(args, "nil_code");   
+            cJSON * body_json = private_lua_bear_json_dump_to_cJSON_object(body_table, nil_code);
+            BearHttpsRequest_send_cJSON_with_ownership_control(request, body_json,BEARSSL_HTTPS_GET_OWNERSHIP);
+        }
+
+
     }
         
         

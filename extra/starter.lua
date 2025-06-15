@@ -6,11 +6,13 @@
 ---@field headers table<string, string> | nil
 ---@field body string | table | nil
 
+---@class LuaBearFileStream
+
 
 ---@class LuaBearModule
 ---@field fetch fun(props:BearProps): BearResponse
 ---@field nil_code string
-
+---@field file_stream fun(file_path:string,content_type:string | nil): LuaBearFileStream
 
 ---@class BearResponse
 ---@field status_code integer
