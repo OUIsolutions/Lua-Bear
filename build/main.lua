@@ -29,14 +29,14 @@ function main()
     darwin.dtw.copy_any_overwriting("extra/starter.lua","release/luaBear/luaBear.lua")
 
     local ship = darwin.ship.create_machine("alpine:latest")
-    ship.add_comptime_command("apk add gcc musl-dev")
-    ship.add_comptime_command("apk add build-base")
+    ship.add_comptime_command("apk update")
+    ship.add_comptime_command("apk add --no-cache gcc musl-dev")
     ship.provider = darwin.argv.get_flag_arg_by_index({ "provider"}, 1, "docker")
     ship.start({
         volumes = {
             { ".", "/output" }
         },
-        command = "gcc /output/src/one.c  -static -shared -fpic  -o /output/release/luaBear/luaBear.so"
+        command = "musl /output/src/one.c  -static -shared -fpic  -o /output/release/luaBear/luaBear.so"
     })
 
 end
