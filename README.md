@@ -34,7 +34,7 @@ LuaBear is a user-friendly HTTP client library that makes sending web requests i
    ```lua
    local luabear = require("luaBear.luaBear")
    ```
-### Option 1:  Build from scratch
+### Option 2:  Build from scratch
 
 For building from scratch you need:
 
