@@ -31,6 +31,7 @@ function main()
     local ship = darwin.ship.create_machine("ubuntu:24.04")
     ship.add_comptime_command("apt update")
     ship.add_comptime_command("apt install musl-tools -y")
+    ship.add_comptime_command("apt install binutils")
     ship.provider = darwin.argv.get_flag_arg_by_index({ "provider"}, 1, "docker")
     ship.start({
         volumes = {
