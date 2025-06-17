@@ -35,16 +35,7 @@ LuaBear is a user-friendly HTTP client library that makes sending web requests i
    local luabear = require("luaBear.luaBear")
    ```
 
-### Option 2: Manual Download
-
-1. Download the library from [GitHub Releases](https://github.com/OUIsolutions/Lua-Bear/releases/download/0.1.0/luaBear.zip)
-2. Extract the ZIP file to your project directory
-3. Import in your code:
-   ```lua
-   local luabear = require("luaBear.luaBear")
-   ```
-
-### Option 3: Build from Source
+### Option 2: Build from Source
 
 Prerequisites:
 - Install Darwin build tool:
