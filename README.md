@@ -47,16 +47,15 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.ou
 
 Then you can build the project in the root directory:
 ```bash
-darwin run_blueprint build/ --mode folder build_release --provider docker
+darwin run_blueprint build/ --mode folder  --provider docker
 ```
-
 You can specify which container provider to use with the `--provider` flag:
 - For Docker: `--provider docker` (default)
 - For Podman: `--provider podman`
 
 Example with Podman:
 ```bash
-darwin run_blueprint build/ --mode folder build_release --provider podman
+darwin run_blueprint build/ --mode folder  --provider podman
 ```
 
 
