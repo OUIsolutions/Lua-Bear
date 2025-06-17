@@ -34,22 +34,31 @@ LuaBear is a user-friendly HTTP client library that makes sending web requests i
    ```lua
    local luabear = require("luaBear.luaBear")
    ```
+### Option 1:  Build from scratch
 
-### Option 2: Build from Source
+For building from scratch you need:
 
-Prerequisites:
-- Install Darwin build tool:
-  ```
-  curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.out -o darwin.out && chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
-  ```
+1. **Darwin**: A tool for building the project. To install Darwin:
+```bash
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.out -o darwin.out && chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
+```
 
-Build steps:
-1. Clone the repository
-2. Navigate to the project directory
-3. Run:
-   ```
-   darwin run_blueprint build/ --mode folder build_release
-   ```
+2. **Container Engine**: Either Docker or Podman installed on your machine.
+
+Then you can build the project in the root directory:
+```bash
+darwin run_blueprint build/ --mode folder build_release --provider docker
+```
+
+You can specify which container provider to use with the `--provider` flag:
+- For Docker: `--provider docker` (default)
+- For Podman: `--provider podman`
+
+Example with Podman:
+```bash
+darwin run_blueprint build/ --mode folder build_release --provider podman
+```
+
 
 ## 📚 Quick Start Guide
 
