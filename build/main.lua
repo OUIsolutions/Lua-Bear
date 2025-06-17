@@ -29,6 +29,4 @@ function main()
     darwin.dtw.copy_any_overwriting("extra/starter.lua","release/luaBear/luaBear.lua")
     os.execute("gcc src/one.c  -shared  -fpic -o release/luaBear/luaBear.so")
 
-    --zip the folder 
-    os.execute("cd release && zip -r luaBear.zip luaBear")
 end
