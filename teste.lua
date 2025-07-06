@@ -1,8 +1,8 @@
 -- Import the library
-local luabear = require("luaBear.luaBear")
+local luabear = require("release/luaBear/luaBear")
 
 -- Make a simple GET request
-local response = luabear.fetch({url = "https://example.com/"})
+local response = luabear.fetch({url = "https://example.com/",http_version = "1.1"})
 
 -- Check status code
 print("Status code:", response.status_code)
