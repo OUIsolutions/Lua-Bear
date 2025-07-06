@@ -1,5 +1,7 @@
 //silver_chain_scope_start
-//mannaged by silver chain: https://github.com/OUIsolutions/SilverChain
+//DONT MODIFY THIS COMMENT
+//this import is computationally generated
+//mannaged by SilverChain: https://github.com/OUIsolutions/SilverChain
 #include "../imports/imports.fdeclare.h"
 //silver_chain_scope_end
 
@@ -39,7 +41,27 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
        }
        BearHttpsRequest_set_method(request, metod);
     }
-   
+
+    
+    int http_version = LuaCEmbedTable_get_type_prop(entrie_table, "http_version");
+    if(http_version != LUA_CEMBED_NIL){
+        char *http_version_str = LuaCembedTable_get_string_prop(entrie_table, "http_version");
+        if(LuaCEmbed_has_errors(args)){
+            BearHttpsRequest_free(request);
+            return LuaCEmbed_send_error(LuaCEmbed_get_error_message(args)); 
+        }
+        if(strcmp(http_version_str, "1.0") == 0){
+            BearHttpsRequest_set_http_protocol(request, BEARSSL_HTTPS_HTTP1_0);
+        }
+        else if(strcmp(http_version_str, "1.1") == 0){
+            BearHttpsRequest_set_http_protocol(request, BEARSSL_HTTPS_HTTP1_1);
+        }
+        else{
+            BearHttpsRequest_free(request);
+            return LuaCEmbed_send_error("Invalid http version provided");
+        }
+       
+    }        
     bool content_type_setted = false;
     int body_type =LuaCEmbedTable_get_type_prop(entrie_table, "body"); 
 
