@@ -11,7 +11,7 @@ function install_dependencies()
 
     
     os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/0.8.3/LuaCEmbedOne.c -o dependencies/LuaCEmbedOne.c")
-    os.execute("curl -L https://github.com/OUIsolutions/BearHttpsClient/releases/download/0.3.0/BearHttpsClientOne.c -o dependencies/BearHttpsClientOne.c")
+    os.execute("curl -L https://github.com/OUIsolutions/BearHttpsClient/releases/download/0.4.0/BearHttpsClientOne.c -o dependencies/BearHttpsClientOne.c")
 
 
     local new_hasher = darwin.dtw.newHasher()
