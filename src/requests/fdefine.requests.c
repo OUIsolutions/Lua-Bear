@@ -131,7 +131,7 @@ LuaCEmbedResponse *private_lua_bear_fetch(LuaCEmbed *args){
 
         if(!is_file_stream){
             char *nil_code = LuaCEmbed_get_string_lib_prop(args, "nil_code");  
-            cJSON * body_json = private_lua_bear_json_dump_to_cJSON_object(body_table, nil_code);
+            cJSON * body_json = private_lua_bear_json_dump_table_to_cJSON(body_table, nil_code);
             BearHttpsRequest_send_cJSON_with_ownership_control(request, body_json,BEARSSL_HTTPS_GET_OWNERSHIP);
         }
 
