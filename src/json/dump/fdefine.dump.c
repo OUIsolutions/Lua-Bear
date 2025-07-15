@@ -44,15 +44,6 @@ cJSON  * private_lua_bear_json_dump_to_cJSON_array(LuaCEmbedTable *table,const c
 
 // Função de comparação para qsort
 static int private_lua_bear_compare_keys(const void *a, const void *b) {
-    if(a == NULL || b == NULL) {
-        return 0; 
-    }
-    if(((private_lua_bear_KeyIndexPair*)a)->key == NULL || ((private_lua_bear_KeyIndexPair*)b)->key == NULL) {
-        return 0; 
-    }
-   // printf("value of a1 %s \n", ((private_lua_bear_KeyIndexPair*)a)->key);
-   // printf("value of b1 %s \n", ((private_lua_bear_KeyIndexPair*)b)->key);
-    // Comparar as chaves lexicograficamente
     return strcmp(((private_lua_bear_KeyIndexPair*)a)->key, ((private_lua_bear_KeyIndexPair*)b)->key);
 }
 
