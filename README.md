@@ -26,8 +26,8 @@ LuaBear is a user-friendly HTTP client library that makes sending web requests i
 1. Download the library package:
    ```
    mkdir -p luaBear
-   curl -L -o luaBear/luaBear.lua https://github.com/OUIsolutions/Lua-Bear/releases/download/0.3.0/luaBear.lua
-   curl -L -o luaBear/luaBear.so https://github.com/OUIsolutions/Lua-Bear/releases/download/0.3.0/luaBear.so
+   curl -L -o luaBear/luaBear.lua https://github.com/OUIsolutions/Lua-Bear/releases/download/0.3.1/luaBear.lua
+   curl -L -o luaBear/luaBear.so https://github.com/OUIsolutions/Lua-Bear/releases/download/0.3.1/luaBear.so
    ```
 
 4. Use in your Lua project:
