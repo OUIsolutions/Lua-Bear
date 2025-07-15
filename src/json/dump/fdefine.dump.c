@@ -44,6 +44,15 @@ cJSON  * private_lua_bear_json_dump_to_cJSON_array(LuaCEmbedTable *table,const c
 
 // Função de comparação para qsort
 static int private_lua_bear_compare_keys(const void *a, const void *b) {
+    if(a == NULL || b == NULL) {
+        return 0; 
+    }
+    if(((private_lua_bear_KeyIndexPair*)a)->key == NULL || ((private_lua_bear_KeyIndexPair*)b)->key == NULL) {
+        return 0; 
+    }
+   // printf("value of a1 %s \n", ((private_lua_bear_KeyIndexPair*)a)->key);
+   // printf("value of b1 %s \n", ((private_lua_bear_KeyIndexPair*)b)->key);
+    // Comparar as chaves lexicograficamente
     return strcmp(((private_lua_bear_KeyIndexPair*)a)->key, ((private_lua_bear_KeyIndexPair*)b)->key);
 }
 
@@ -52,38 +61,7 @@ cJSON  * private_lua_bear_json_dump_to_cJSON_object(LuaCEmbedTable *table, const
     cJSON * created_object = cJSON_CreateObject();
     
     // Criar array para armazenar pares de chave-índice
-    private_lua_bear_KeyIndexPair *pairs = (private_lua_bear_KeyIndexPair*)malloc(size * sizeof(private_lua_bear_KeyIndexPair));
-    if (!pairs) {
-        // Em caso de falha na alocação, recorrer ao método original
-        for(int i = 0; i < size; i++){
-            char *key = LuaCembedTable_get_key_by_index(table, i);
-            int type = LuaCEmbedTable_get_type_by_index(table, i);
-            
-            if(type == LUA_CEMBED_NUMBER){
-                double value = LuaCEmbedTable_get_double_by_index(table,i);
-                cJSON_AddNumberToObject(created_object,key,value);
-            }
-            if(type == LUA_CEMBED_STRING){
-                char *value = LuaCEmbedTable_get_string_by_index(table,i);
-                if(strcmp(nil_code,value)==0){
-                    cJSON_AddNullToObject(created_object,key);
-                }else{
-                    cJSON_AddStringToObject(created_object,key, value);
-                }
-            }
-            if(type == LUA_CEMBED_BOOL){
-                bool value = LuaCEmbedTable_get_bool_by_index(table,i);
-                cJSON_AddBoolToObject(created_object,key, value);
-            }
-
-            if(type == LUA_CEMBED_TABLE){
-                LuaCEmbedTable *internal = LuaCEmbedTable_get_sub_table_by_index(table,i);
-                cJSON *value = private_lua_bear_json_dump_table_to_cJSON(internal, nil_code);
-                cJSON_AddItemToObject(created_object,key,value);
-            }
-        }
-        return created_object;
-    }
+    private_lua_bear_KeyIndexPair *pairs = (private_lua_bear_KeyIndexPair*)malloc((size +1 )* sizeof(private_lua_bear_KeyIndexPair));
     
     // Preencher o array com as chaves e seus índices
     for(int i = 0; i < size; i++){
