@@ -3,7 +3,7 @@
 #include "imports/imports.dependencie.h"
 //silver_chain_scope_end
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
 #define  bear_ptr_cast long long
 #endif
 
